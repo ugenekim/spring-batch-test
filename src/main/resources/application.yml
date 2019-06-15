@@ -16,6 +16,8 @@ spring:
     job: 
       enabled: false
  
+  main:
+    allow-bean-definition-overriding: true
 
 
 #  jpa:

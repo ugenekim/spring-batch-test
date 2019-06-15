@@ -29,7 +29,7 @@ public class ValidationProcessJobConfiguration {
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 	
-	@Bean(name = "validationProcessJob")
+	@Bean
 	public Job validationProcessJob() {
 		return jobBuilderFactory.get("validationProcessJob")
 				.incrementer(new RunIdIncrementer())
@@ -37,7 +37,7 @@ public class ValidationProcessJobConfiguration {
 				.build();
 	}
 
-	@Bean(name = "validationProcessStep1")
+	@Bean
 	public Step step1() {
 		return stepBuilderFactory.get("validationProcessStep1")
 				.<Employee, Employee>chunk(10)

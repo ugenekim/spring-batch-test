@@ -28,7 +28,7 @@ public class SimpleJobConfiguration {
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 
-	@Bean(name = "simpleJob")
+	@Bean
 	public Job simpleJob() {
 		return jobBuilderFactory.get("simpleJob")
 				.incrementer(new RunIdIncrementer())
@@ -39,7 +39,7 @@ public class SimpleJobConfiguration {
 				.build();
 	}
 
-	@Bean(name = "simpleStep1")
+	@Bean
 	public Step simpleStep1() {
 		return stepBuilderFactory.get("simpleStep1")
 				.tasklet(new SimpleTask1())
@@ -47,7 +47,7 @@ public class SimpleJobConfiguration {
 				.build();
 	}
 	
-	@Bean(name = "simpleStep2")
+	@Bean
 	public Step simpleStep2() {
 		return stepBuilderFactory.get("simpleStep2")
 				.tasklet(new SimpleTask2())
@@ -55,7 +55,7 @@ public class SimpleJobConfiguration {
 				.build();
 	}
 
-	@Bean(name = "simpleStep3")
+	@Bean
 	public Step simpleStep3() {
 		return stepBuilderFactory.get("simpleStep3")
 				.tasklet((contribution, chunkContext) -> {
