@@ -6,6 +6,7 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +19,12 @@ public class SpringBatchTestApplication implements CommandLineRunner {
 	private JobLauncher jobLauncher;
 	
 	@Autowired
-	private Job job;
+	@Qualifier("simpleJob")
+	private Job simplJob;
+	
+	@Autowired
+	@Qualifier("validationProcessJob")
+	private Job validationProcessJob;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBatchTestApplication.class, args);
@@ -29,6 +35,7 @@ public class SpringBatchTestApplication implements CommandLineRunner {
 		JobParameters jobParameters = new JobParametersBuilder()
 				.addString("JobId", String.valueOf(System.currentTimeMillis()))
 				.toJobParameters();
-		jobLauncher.run(job, jobParameters);
+		jobLauncher.run(simplJob, jobParameters);
+		jobLauncher.run(validationProcessJob, jobParameters);
 	}
 }
