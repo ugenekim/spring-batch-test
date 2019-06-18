@@ -11,13 +11,13 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 public class BatchConfig {
 
-//	@Bean
-//	public JobLauncher jobLauncher(ThreadPoolTaskExecutor taskExecutor, JobRepository jobRepository) {
-//		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
-//		jobLauncher.setTaskExecutor(taskExecutor);
-//		jobLauncher.setJobRepository(jobRepository);
-//		return jobLauncher;
-//	}
+	@Bean(name = "threadPoolJobLauncher")
+	public JobLauncher jobLauncher(ThreadPoolTaskExecutor taskExecutor, JobRepository jobRepository) {
+		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
+		jobLauncher.setTaskExecutor(taskExecutor);
+		jobLauncher.setJobRepository(jobRepository);
+		return jobLauncher;
+	}
 	
 	@Bean
 	public JobLauncher jobLauncher() throws Exception {

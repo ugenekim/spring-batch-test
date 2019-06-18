@@ -14,15 +14,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @EnableBatchProcessing // 배치기능 활성화
 @SpringBootApplication
 @EnableScheduling
+@EnableAsync
 public class SpringBatchTestApplication implements CommandLineRunner {
 	
 	@Autowired
+	@Qualifier("threadPoolJobLauncher")
 	private JobLauncher jobLauncher;
 	
 	@Autowired
